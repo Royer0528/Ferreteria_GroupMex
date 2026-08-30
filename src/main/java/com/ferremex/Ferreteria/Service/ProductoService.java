@@ -32,6 +32,11 @@ public class ProductoService implements IProductoService {
         if (prod==null){
             return null;
         }
+        boolean valido = this.validarDatos(prod);
+
+        if(valido== false){
+            return null;
+        }
         //Id se genera automaticamente en la BD y con esto la devolvemos junto con el producto
         return prodRepo.save(prod);
     }
@@ -41,6 +46,12 @@ public class ProductoService implements IProductoService {
         //Buscar si existe el producto
         Producto prodExistente = buscarProducto(codProd);
         if (prodExistente== null){
+            return null;
+        }
+        //Falta validar si cada uno de los datos es null
+        boolean valido = this.validarDatos(prod);
+
+        if(valido== false){
             return null;
         }
         //Actualizamos los datos con el producto
@@ -61,6 +72,22 @@ public class ProductoService implements IProductoService {
             return false;
         }
         prodRepo.delete(prodExistente);
+        return true;
+    }
+
+    public boolean validarDatos(Producto prod){
+        if(prod.getNombre() == null || prod.getNombre().isBlank()){
+            return false;
+        }
+        if(prod.getMarca() == null || prod.getMarca().isBlank()){
+            return false;
+        }
+        if(prod.getPrecio() == null || prod.getPrecio()<= 0){
+            return false;
+        }
+        if(prod.getStock() <= 0){
+            return false;
+        }
         return true;
     }
 }

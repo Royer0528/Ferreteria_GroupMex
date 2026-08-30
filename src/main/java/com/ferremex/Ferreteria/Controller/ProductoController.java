@@ -3,7 +3,6 @@ package com.ferremex.Ferreteria.Controller;
 import com.ferremex.Ferreteria.Model.Producto;
 import com.ferremex.Ferreteria.Service.Interfece.IProductoService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,7 +47,7 @@ public class ProductoController {
         }
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body("Nuevo producto creado: " + prod.getNombre());
+                .body("Nuevo producto creado:  " + prod.getNombre());
     }
     //UPDATE
     @PutMapping("/{codProd}")
@@ -59,7 +58,7 @@ public class ProductoController {
         if (prodEditado == null){
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body("No fue posible editar el producto: " + prodEditado.getCodProducto());
+                    .body("No fue posible editar el producto");
         }
         return ResponseEntity.ok(prodEditado);
     }
