@@ -10,11 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
-public class ProductoController {
+public class ProductoRestController {
 
     private final IProductoService prodServ;
 
-    public ProductoController(IProductoService prodServ) {
+    public ProductoRestController(IProductoService prodServ) {
         this.prodServ = prodServ;
     }
     //READ
